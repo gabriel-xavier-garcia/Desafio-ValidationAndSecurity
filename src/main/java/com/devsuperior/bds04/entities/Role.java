@@ -42,6 +42,10 @@ public class Role {
         this.authority = authority;
     }
 
+    public Set<User> getUsers() {
+        return users;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

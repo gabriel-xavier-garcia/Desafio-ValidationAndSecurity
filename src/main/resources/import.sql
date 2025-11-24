@@ -1,3 +1,5 @@
+INSERT INTO tb_user(email, password) VALUES ('ana@gmail.com', '')
+
 INSERT INTO tb_city(name) VALUES ('São Paulo');
 INSERT INTO tb_city(name) VALUES ('Brasília');
 INSERT INTO tb_city(name) VALUES ('Fortaleza');
