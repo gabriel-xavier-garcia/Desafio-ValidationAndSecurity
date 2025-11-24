@@ -5,9 +5,11 @@ import com.devsuperior.bds04.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.time.Instant;
 
@@ -23,7 +25,9 @@ public class ControllerExceptionHandler {
         err.setError("Validation");
         err.setMessage("errors");
         err.setPath(request.getRequestURI());
-
+        for (FieldError f : e.getBindingResult().getFieldErrors()){
+            err.getErrors().add(new FieldMessage(f.getField(), f.getDefaultMessage()));
+        }
         return ResponseEntity.status(status).body(err);
     }
 

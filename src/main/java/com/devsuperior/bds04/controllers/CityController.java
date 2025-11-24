@@ -5,6 +5,7 @@ import com.devsuperior.bds04.services.CityService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -23,6 +24,7 @@ public class CityController {
         return ResponseEntity.ok().body(result);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     public ResponseEntity<CityDTO> insert(@Valid @RequestBody CityDTO dto) {
         CityDTO result = service.insert(dto);
